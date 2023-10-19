@@ -4,7 +4,7 @@
     <th:block th:fragment="content">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>write</title>
 
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -17,12 +17,13 @@
 
     <link rel="stylesheet" href="/css/style.css">
     <link href="/css/clubwrite.css" rel="stylesheet">
+    <link href="/css/button.css" rel="stylesheet">
 
 </head>
 <body>
 
 <div class="write_wrap">
-<form action="/club/write" method="post" enctype="multipart/form-data">
+<form id="upload-form" action="/club/write" method="post" enctype="multipart/form-data">
     <div>
 
         <div>
@@ -33,11 +34,11 @@
 
             </div>
             <hr>
-            <div class="title_title">
-                <strong>동아리명 </strong>
+            <div class="title_view">
+                <strong>동아리명 </strong>50글자 제한
                 <br>
                 <label>
-                    <input class="input_css" type="text" name="clubboard_title" required>
+                    <input class="input_css" type="text" name="clubboard_title" maxlength="50" required>
                 </label>
 
             </div>
@@ -80,15 +81,21 @@
             <input type="hidden" name="nickname" value="${authInfo.nickname}" /> &lt;!&ndash; 세션에서 가져온 사용자 정보를 hidden 필드에 할당 &ndash;&gt;
             <input type="hidden" name="id" value="${authInfo.id}" /> &lt;!&ndash; 세션에서 가져온 사용자 정보를 hidden 필드에 할당 &ndash;&gt;
         </div>-->
-
-        <div class="buttons">
-            <button class="buttona" type="submit"> 업로드</button>
+<!--    <div class="container">-->
+<!--        <div class="button-effect">-->
+<!--            <button  type="submit"> 업로드</button>-->
+<!--        </div>-->
+<!--    </div>-->
+        <div class="container" style="justify-content: left">
+            <div class="button-effect">
+                <a class="effect effect-1" href="#" onclick="submitForm()">업로드</a>
+            </div>
         </div>
-
     </div>
 
 </form>
 </div>
+<script src="/js/club_write.js"></script>
 </body>
     </th:block>
 </th:block>

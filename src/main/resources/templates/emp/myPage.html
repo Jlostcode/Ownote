@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/myPage.css">
 </head>
 <body>
-<div th:each="myPage : ${myPage}">
-    <table class="table2">
+<div class="board_wrap">
+<div class="board-list" th:each="myPage : ${myPage}">
+    <table>
         <thead>
         <tr>
             <th scope="cols">타이틀</th>
@@ -48,11 +52,12 @@
         </tr>
     </tbody>
 </table>
-</div>
-<div id="changeMyInfo">
     <form th:action="@{/emp/changePhone}" method="get">
         <input type="submit" value="변경한다" id="changeMyInfo_submit">
     </form>
 </div>
+</div>
 </body>
+    </th:block>
+</th:block>
 </html>

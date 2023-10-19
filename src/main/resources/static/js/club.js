@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.listback-link').click(function (e) {
+    $('#listback-link').click(function (e) {
         e.preventDefault(); // 기본 링크 동작을 막습니다.
 
         var clubboardId = $(this).data('clubboard-id');
@@ -27,7 +27,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.delete-link').click(function (e) {
+    $('#delete-link').click(function (e) {
         e.preventDefault(); // 기본 링크 동작을 막습니다.
 
         var clubboardId = $(this).data('clubboard-id');

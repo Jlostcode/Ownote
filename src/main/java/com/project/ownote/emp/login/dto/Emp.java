@@ -39,4 +39,17 @@ public class Emp {
     }
     public boolean matchPassword(String password) {
         return this.emp_password.equals(password);}
+
+    public Emp(int emp_id, int emp_num, String emp_password, String emp_name, String emp_birth, String emp_email, String emp_phone, Date emp_date, int grade_num, int dept_num) {
+        this.emp_id = emp_id;
+        this.emp_num = emp_num;
+        this.emp_password = emp_password;
+        this.emp_name = emp_name;
+        this.emp_birth = emp_birth;
+        this.emp_email = emp_email;
+        this.emp_phone = emp_phone;
+        this.emp_date = emp_date;
+        this.grade_num = grade_num;
+        this.dept_num = dept_num;
+    }
 }

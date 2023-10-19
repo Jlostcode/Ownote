@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
 <head>
     <meta charset="UTF-8">
     <title>modify</title>
@@ -14,64 +16,12 @@
 
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/clubmodify.css" rel="stylesheet">
+    <link href="/css/button.css" rel="stylesheet">
 </head>
 <body>
-<header>
-    <nav id="nav2">
-        <h1>Ownote</h1>
-        <ul class="navbar-menu">
-            <li ><a th:if ="${authInfo == null}" th:href="@{/emp/logIn}">로그인</a></li>
-        </ul>
-        <ul class="navbar-menu">
-            <li><a th:if ="${authInfo != null}" th:href="@{/emp/myPage}">[[${authInfo.emp_name}]]</a></li>
-            <li><a th:if ="${authInfo != null}" th:href="@{/logout}">로그아웃</a></li>
-        </ul>
-    </nav>
-</header>
-<aside class="side-bar">
-    <ul>
-        <li>
-            <a th:href="@{#}"></i>인사</a>
-            <ul>
-                <li><a th:href="@{/emp/signUp}">사원등록</a></li>
-                <li><a th:href="@{#}">text2</a></li>
-                <li><a th:href="@{#}">text3</a></li>
-                <li><a th:href="@{#}">text4</a></li>
-            </ul>
-        </li>
-        <li>
-            <a th:href="@{#}">연차</a>
-            <ul>
-                <li><a th:href="@{#}">연차 신청 </a></li>
-                <li><a th:href="@{#}">연차 확인</a></li>
-                <li><a th:href="@{#}">연차 승인</a></li>
-                <li><a th:href="@{#}">연차 수량</a></li>
-            </ul>
-        </li>
-        <li>
-            <a th:href="@{#}">게시판</a>
-            <ul>
-                <li><a th:href="@{#}">text1</a></li>
-                <li><a th:href="@{#}">text2</a></li>
-                <li><a th:href="@{#}">text3</a></li>
-                <li><a th:href="@{#}">text4</a></li>
-            </ul>
-        </li>
-        <li>
-            <a th:href="@{#}">동아리</a>
-            <ul>
-                <li><a th:href="@{/clubinfo/list}">동아리 소개</a></li>
-                <li><a th:href="@{/club/list}">홍보 게시판</a></li>
-                <li><a th:href="@{#}">text3</a></li>
-                <li><a th:href="@{#}">text4</a></li>
-            </ul>
-        </li>
-        <li><a th:href="@{/emp/adress}">주소록</a></li>
-    </ul>
-</aside>
-<script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
+
 <div class="modify_wrap">
-<form action="/club/modify" method="post" enctype="multipart/form-data">
+<form id="upload-form" action="/club/modify" method="post" enctype="multipart/form-data">
     <div th:each="dto : ${dto}">
         <div class="title_name">
             <img class="user_image" src="/image/user.png" alt="userIcon">
@@ -86,7 +36,7 @@
             <strong>동아리명 </strong>
             <br>
             <label>
-                <input class="input_css" type="text" name="clubboard_title" th:value="${dto.clubboard_title}" required>
+                <input class="input_css" type="text" name="clubboard_title" th:value="${dto.clubboard_title}" maxlength="50" required>
             </label>
         </div>
         <hr>
@@ -115,15 +65,17 @@
         파일 1 업로드 시 기존 파일 삭제됩니다.
 
         <hr>
-        <div class="button">
-            <div class="buttons">
-                <a href="#" class="listback-link" th:data-clubboard-id='${dto.clubboard_id}'>돌아가기</a>
+        <div class="container" style="justify-content: left">
+            <div class="button-effect">
+                <a class="effect effect-1" href="#" id="listback-link" th:data-clubboard-id='${dto.clubboard_id}'>돌아가기</a>
             </div>
-            <div class="buttons">
-                <button class="buttona" type="submit"> 업로드</button>
+
+            <div class="button-effect">
+                <a class="effect effect-1" onclick="submitForm()">업로드</a>
             </div>
-            <div class="buttons">
-                <a href="#" class="delete-link" th:data-clubboard-id='${dto.clubboard_id}'>게시글삭제</a>
+
+            <div class="button-effect">
+                <a href="#" class="effect effect-1" id="delete-link" th:data-clubboard-id='${dto.clubboard_id}'>게시글삭제</a>
             </div>
         </div>
 
@@ -133,5 +85,8 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/club.js"></script>
+<script src="/js/club_modify.js"></script>
 </body>
+    </th:block>
+</th:block>
 </html>
